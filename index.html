@@ -1,605 +1,77 @@
 <!DOCTYPE html>
 <html lang="pt-BR" class="scroll-smooth">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>UPMETRIKA - Automação e Inteligência para Negócios</title>
-    
-    <!-- Tailwind CSS -->
-    <script src="https://cdn.tailwindcss.com"></script>
-
-    <!-- Google Fonts: Inter -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-
-    <!-- Custom Styles & JS -->
-    <style>
-        body {
-            font-family: 'Inter', sans-serif;
-            background-color: #020617; /* slate-950 */
-            color: #cbd5e1; /* slate-300 */
-        }
-        .bg-gradient-animated-dark {
-            background: linear-gradient(-45deg, #020617, #0f172a, #1e293b, #020617);
-            background-size: 400% 400%;
-            animation: gradient 15s ease infinite;
-        }
-        @keyframes gradient {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
-        }
-        .fade-in {
-            opacity: 0;
-            transform: translateY(20px);
-            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
-        }
-        .fade-in.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-        .accordion-content {
-            max-height: 0;
-            overflow: hidden;
-            transition: max-height 0.5s ease-in-out;
-        }
-        .neon-text-cyan {
-            color: #22d3ee;
-            text-shadow: 0 0 5px rgba(34, 211, 238, 0.7), 0 0 10px rgba(34, 211, 238, 0.5);
-        }
-        .neon-glow-cyan {
-             box-shadow: 0 0 15px rgba(34, 211, 238, 0.2), 0 0 5px rgba(34, 211, 238, 0.1) inset;
-        }
-        .neon-border-cyan {
-            border: 1px solid rgba(34, 211, 238, 0.2);
-            transition: border-color 0.3s ease, box-shadow 0.3s ease;
-        }
-        .neon-border-cyan:hover {
-            border-color: rgba(34, 211, 238, 0.5);
-            box-shadow: 0 0 20px rgba(34, 211, 238, 0.3);
-        }
-        .circuit-bg {
-            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100' viewBox='0 0 100 100'%3E%3Cg fill='%230e7490' fill-opacity='0.05'%3E%3Crect x='0' y='0' width='100' height='1'/%3E%3Crect x='0' y='0' width='1' height='100'/%3E%3C/g%3E%3C/svg%3E");
-        }
-        /* Spinner Animation */
-        .loader {
-            border: 4px solid #1e293b; /* slate-800 */
-            border-left-color: #22d3ee; /* cyan-400 */
-            border-radius: 50%;
-            width: 40px;
-            height: 40px;
-            animation: spin 1s linear infinite;
-        }
-        @keyframes spin {
-            to { transform: rotate(360deg); }
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>UPMETRIKA - Automação e Inteligência para Negócios</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: #f8fafc;
+      color: #334155;
+    }
+    /* estilos reduzidos para exemplo */
+  </style>
 </head>
-<body class="text-slate-300">
+<body class="text-slate-700">
+  <header class="bg-white/80 backdrop-blur-md fixed top-0 left-0 right-0 z-50">
+    <div class="container mx-auto px-6 py-4 flex justify-between items-center">
+      <a href="#" class="text-2xl font-bold text-slate-900">UPMETRIKA</a>
+    </div>
+  </header>
 
-    <!-- 0. Navigation Bar (Fixed) -->
-    <header id="navbar" class="bg-slate-900/80 backdrop-blur-md fixed top-0 left-0 right-0 z-50 transition-all duration-300 shadow-lg shadow-cyan-500/5">
-        <div class="container mx-auto px-6 py-4">
-            <div class="flex items-center justify-between">
-                <div class="flex items-center">
-                    <a href="#" class="text-2xl font-bold text-white">UPMETRIKA</a>
-                </div>
-                <nav class="hidden lg:flex items-center justify-center flex-1 space-x-8">
-                    <a href="#features" class="text-slate-300 hover:text-cyan-400 transition-colors">Funcionalidades</a>
-                    <a href="#automation-calculator" class="text-slate-300 hover:text-cyan-400 transition-colors">Calculadora IA</a>
-                    <a href="#why-us" class="text-slate-300 hover:text-cyan-400 transition-colors">Por que Nós</a>
-                    <a href="#testimonials" class="text-slate-300 hover:text-cyan-400 transition-colors">Depoimentos</a>
-                    <a href="#faq" class="text-slate-300 hover:text-cyan-400 transition-colors">FAQ</a>
-                </nav>
-                <div class="hidden lg:flex items-center">
-                    <a href="https://wa.me/5546999854762" target="_blank" class="bg-cyan-500 text-slate-900 font-semibold px-5 py-2.5 rounded-lg hover:bg-cyan-400 transition-all duration-300 shadow-md shadow-cyan-500/20 hover:shadow-lg hover:shadow-cyan-500/30">Agendar Diagnóstico</a>
-                </div>
-                <div class="lg:hidden">
-                    <button id="mobile-menu-button" class="text-slate-300 focus:outline-none">
-                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
-                    </button>
-                </div>
+  <main class="pt-32">
+    <section class="bg-gradient-to-r from-white to-slate-100 py-16">
+      <div class="container mx-auto px-6 text-center">
+        <h1 class="text-4xl font-extrabold mb-4">Automatize processos com IA</h1>
+        <p class="text-lg text-slate-600 mb-6">Transformamos sua operação com tecnologia e inteligência.</p>
+        <img src="images/logo01.png" alt="Logo UPMETRIKA" class="mx-auto w-40 mb-4">
+        <a href="#features" class="bg-orange-500 text-white px-6 py-3 rounded-lg">Saiba mais</a>
+      </div>
+    </section>
+
+    <section id="testimonials" class="py-16 bg-slate-50">
+      <div class="container mx-auto px-6 grid md:grid-cols-3 gap-8">
+        <div class="bg-white p-6 rounded-xl border">
+          <p class="mb-4">"A automação reduziu nosso tempo de resposta em 90%."</p>
+          <div class="flex items-center">
+            <img src="images/foto01.png" alt="João Silva" class="w-12 h-12 rounded-full mr-4">
+            <div>
+              <p class="font-bold">João Silva</p>
+              <p class="text-sm text-slate-500">CEO, InovaTech</p>
             </div>
+          </div>
         </div>
-        <!-- Mobile Menu -->
-        <div id="mobile-menu" class="hidden lg:hidden bg-slate-900">
-            <nav class="flex flex-col items-center px-6 pt-2 pb-4 space-y-4">
-                <a href="#features" class="block text-slate-300 hover:text-cyan-400">Funcionalidades</a>
-                <a href="#automation-calculator" class="block text-slate-300 hover:text-cyan-400">Calculadora IA</a>
-                <a href="#why-us" class="block text-slate-300 hover:text-cyan-400">Por que Nós</a>
-                <a href="#testimonials" class="block text-slate-300 hover:text-cyan-400">Depoimentos</a>
-                <a href="#faq" class="block text-slate-300 hover:text-cyan-400">FAQ</a>
-                <a href="https://wa.me/5546999854762" target="_blank" class="w-full text-center bg-cyan-500 text-slate-900 font-semibold mt-2 px-5 py-2.5 rounded-lg hover:bg-cyan-400 transition-transform">Agendar Diagnóstico</a>
-            </nav>
+        <div class="bg-white p-6 rounded-xl border">
+          <p class="mb-4">"Decisões baseadas em dados melhoraram nosso marketing."</p>
+          <div class="flex items-center">
+            <img src="images/foto02.png" alt="Maria Pereira" class="w-12 h-12 rounded-full mr-4">
+            <div>
+              <p class="font-bold">Maria Pereira</p>
+              <p class="text-sm text-slate-500">Diretora, Vende+</p>
+            </div>
+          </div>
         </div>
-    </header>
-
-    <main>
-        <!-- 1. Hero (Hook Section) -->
-        <section class="bg-gradient-animated-dark pt-32 pb-16 lg:pt-48 lg:pb-24 overflow-hidden relative circuit-bg">
-            <div class="container mx-auto px-6 relative z-10">
-                <div class="grid lg:grid-cols-2 gap-12 items-center">
-                    <div class="fade-in">
-                        <span class="inline-flex items-center bg-cyan-900/50 text-cyan-300 text-sm font-semibold px-4 py-1.5 rounded-full mb-4 border border-cyan-500/20">
-                            <svg class="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>
-                            +25 empresas atendidas
-                        </span>
-                        <h1 class="text-4xl lg:text-5xl font-extrabold text-white leading-tight mb-6">Automatize processos, elimine retrabalho e <span class="neon-text-cyan">aumente seus resultados</span> com Inteligência Artificial</h1>
-                        <p class="text-lg text-slate-400 mb-8">Na UPMETRIKA, combinamos automação, marketing e gestão estratégica para negócios que querem crescer com simplicidade, previsibilidade e inteligência.</p>
-                        <div class="flex flex-col sm:flex-row gap-4 mb-8">
-                            <a href="https://wa.me/5546999854762" target="_blank" class="bg-cyan-500 text-slate-900 font-semibold text-center px-8 py-3 rounded-lg hover:bg-cyan-400 transition-all duration-300 shadow-lg shadow-cyan-500/30 hover:shadow-xl hover:shadow-cyan-400/40 transform hover:-translate-y-1">Agendar Diagnóstico gratuito</a>
-                            <a href="#features" class="bg-slate-800/50 text-white font-semibold text-center px-8 py-3 rounded-lg hover:bg-slate-700/70 transition-all duration-300 border border-slate-600">Saiba Mais</a>
-                        </div>
-                        <p class="text-sm font-semibold text-slate-400">
-                           🚀 300% ROI médio em 6 meses
-                        </p>
-                    </div>
-                    <div class="fade-in" style="transition-delay: 200ms;">
-                        <img src="https://placehold.co/600x500/0f172a/06b6d4?text=Dashboard+IA+Futurista" alt="Dashboard futurista com gráficos e dados de Inteligência Artificial" class="rounded-2xl shadow-2xl shadow-cyan-900/50 mx-auto w-full max-w-lg lg:max-w-none">
-                    </div>
-                </div>
+        <div class="bg-white p-6 rounded-xl border">
+          <p class="mb-4">"Tarefas manuais foram automatizadas com sucesso."</p>
+          <div class="flex items-center">
+            <img src="images/Foto03.png" alt="Carlos Ferreira" class="w-12 h-12 rounded-full mr-4">
+            <div>
+              <p class="font-bold">Carlos Ferreira</p>
+              <p class="text-sm text-slate-500">Operações, LogExpress</p>
             </div>
-        </section>
-
-        <!-- 2. Credibility Logos -->
-        <section class="py-12 bg-slate-900">
-            <div class="container mx-auto px-6 fade-in">
-                <h3 class="text-center text-sm font-semibold text-slate-500 mb-6 tracking-wider">PARCEIROS E CLIENTES QUE CONFIAM NA NOSSA TECNOLOGIA</h3>
-                <div class="flex justify-center items-center gap-8 sm:gap-12 md:gap-16 flex-wrap">
-                    <div class="text-lg font-bold text-slate-500 opacity-70 hover:opacity-100 transition-opacity">Google Cloud Partner</div>
-                    <div class="text-lg font-bold text-slate-500 opacity-70 hover:opacity-100 transition-opacity">Margalinda Suplementos</div>
-                    <div class="text-lg font-bold text-slate-500 opacity-70 hover:opacity-100 transition-opacity">Carro Forte</div>
-                </div>
-            </div>
-        </section>
-
-        <!-- 3. Features Section -->
-        <section id="features" class="py-16 lg:py-24 circuit-bg">
-            <div class="container mx-auto px-6">
-                <div class="text-center mb-12 fade-in">
-                    <h2 class="text-4xl lg:text-5xl font-extrabold text-white">Funcionalidades Pensadas para <span class="neon-text-cyan">Escalar</span></h2>
-                    <p class="mt-4 text-lg text-slate-400 max-w-2xl mx-auto">Tudo o que você precisa para transformar dados em resultados concretos.</p>
-                </div>
-
-                <!-- Main Card -->
-                <div class="bg-slate-900 p-8 lg:p-12 rounded-2xl shadow-2xl shadow-cyan-900/30 neon-border-cyan mb-8 fade-in flex flex-col md:flex-row items-center gap-8">
-                    <img src="https://placehold.co/400x300/0f172a/0ea5e9?text=Diagnóstico+Vetorial" alt="Ilustração vetorial de um diagnóstico estratégico" class="w-full md:w-1/3 rounded-xl">
-                    <div class="flex-1">
-                        <h3 class="text-2xl font-bold text-white mb-3">Diagnóstico Estratégico Personalizado</h3>
-                        <p class="text-slate-400">Analisamos profundamente seus processos para identificar os melhores pontos de automação e otimização, criando um plano de ação claro e focado em resultados rápidos.</p>
-                    </div>
-                </div>
-
-                <!-- Secondary Cards Grid -->
-                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-                    <!-- Card 1 -->
-                    <div class="bg-slate-900 p-8 rounded-2xl neon-border-cyan neon-border-cyan:hover fade-in">
-                        <h4 class="text-xl font-bold text-white mb-2">Implementação Rápida</h4>
-                        <p class="text-slate-400">Nossa metodologia ágil garante que as soluções estejam operando no seu negócio em tempo recorde.</p>
-                    </div>
-                    <!-- Card 2 -->
-                    <div class="bg-slate-900 p-8 rounded-2xl neon-border-cyan fade-in" style="transition-delay: 100ms;">
-                        <h4 class="text-xl font-bold text-white mb-2">Treinamento Prático</h4>
-                        <p class="text-slate-400">Capacitamos sua equipe para extrair o máximo das novas ferramentas, sem jargões técnicos.</p>
-                    </div>
-                    <!-- Card 3 -->
-                    <div class="bg-slate-900 p-8 rounded-2xl neon-border-cyan fade-in" style="transition-delay: 200ms;">
-                        <h4 class="text-xl font-bold text-white mb-2">Suporte Ativo por 6 Meses</h4>
-                        <p class="text-slate-400">Acompanhamos sua jornada, garantindo que os resultados sejam consistentes e duradouros.</p>
-                    </div>
-                    <!-- Card 4 -->
-                    <div class="bg-slate-900 p-8 rounded-2xl neon-border-cyan fade-in">
-                        <h4 class="text-xl font-bold text-white mb-2">Controle de Vendas e Estoque</h4>
-                        <p class="text-slate-400">Visibilidade total do seu funil e inventário, com previsões inteligentes para evitar perdas.</p>
-                    </div>
-                    <!-- Card 5 -->
-                     <div class="bg-slate-900 p-8 rounded-2xl neon-border-cyan fade-in" style="transition-delay: 100ms;">
-                        <h4 class="text-xl font-bold text-white mb-2">Relatórios em Tempo Real</h4>
-                        <p class="text-slate-400">Dashboards intuitivos para você tomar decisões baseadas em dados atualizados.</p>
-                    </div>
-                    <!-- Card 6 -->
-                    <div class="bg-slate-900 p-8 rounded-2xl neon-border-cyan fade-in" style="transition-delay: 200ms;">
-                        <h4 class="text-xl font-bold text-white mb-2">Gestão Financeira Automatizada</h4>
-                        <p class="text-slate-400">Automatize cobranças, conciliação e fluxo de caixa para focar no que realmente importa.</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-        
-        <!-- NEW: Gemini API Automation Calculator -->
-        <section id="automation-calculator" class="py-16 lg:py-24 bg-slate-900">
-            <div class="container mx-auto px-6">
-                <div class="text-center mb-12 fade-in">
-                    <p class="text-lg font-semibold text-cyan-400 mb-4 tracking-wider">DESCUBRA O POTENCIAL DA AUTOMAÇÃO PARA SEU NEGÓCIO</p>
-                    <h2 class="text-4xl lg:text-5xl font-extrabold text-white">Análise de Negócio com <span class="neon-text-cyan">Inteligência Artificial</span></h2>
-                    <p class="mt-4 text-lg text-slate-400 max-w-3xl mx-auto">Não tem certeza por onde começar? Descreva seu negócio que nossa IA vai ajudar você a identificar os melhores pontos para automatizar.</p>
-                </div>
-                <div class="max-w-4xl mx-auto bg-slate-950 p-8 rounded-2xl neon-border-cyan shadow-2xl shadow-cyan-900/30 fade-in">
-                    <form id="calculator-form" class="grid grid-cols-1 gap-6 mb-8">
-                        <div>
-                            <label for="business-description" class="block text-sm font-medium text-slate-300 mb-2">Descreva sua empresa e suas principais tarefas diárias:</label>
-                            <textarea id="business-description" rows="5" class="w-full bg-slate-800 border border-slate-700 rounded-lg p-3 text-white focus:ring-2 focus:ring-cyan-500 focus:border-cyan-500" placeholder="Ex: Somos uma loja de e-commerce de roupas com 10 funcionários. Gastamos muito tempo respondendo e-mails de clientes, atualizando estoque manualmente e criando posts para redes sociais."></textarea>
-                        </div>
-                    </form>
-                    <div class="text-center">
-                         <button id="calculate-btn" class="bg-cyan-500 text-slate-900 font-semibold px-8 py-3 rounded-lg hover:bg-cyan-400 transition-all duration-300 shadow-lg shadow-cyan-500/30 transform hover:-translate-y-1">
-                            ✨ Analisar com IA
-                        </button>
-                    </div>
-                    
-                    <div id="loader" class="hidden flex justify-center mt-8">
-                        <div class="loader"></div>
-                    </div>
-
-                    <div id="results" class="hidden mt-10">
-                        <h4 class="text-xl font-bold text-white mb-4 text-center">Sugestões de Automação Personalizadas:</h4>
-                        <ul id="suggestions-list" class="text-left list-disc list-inside bg-slate-900 p-6 rounded-lg space-y-3 text-slate-300">
-                           <!-- Suggestions will be injected here by JS -->
-                        </ul>
-                    </div>
-                     <div id="error-message" class="hidden mt-8 text-center text-red-400 bg-red-900/50 p-4 rounded-lg"></div>
-                </div>
-            </div>
-        </section>
-
-        <!-- 4. "Why Choose" Section -->
-        <section id="why-us" class="py-16 lg:py-24 circuit-bg">
-            <div class="container mx-auto px-6">
-                <div class="text-center mb-12 fade-in">
-                    <h2 class="text-4xl lg:text-5xl font-extrabold text-white">Por que escolher a <span class="neon-text-cyan">UPMETRIKA?</span></h2>
-                    <p class="mt-4 text-lg text-slate-400 max-w-3xl mx-auto">Vamos além da tecnologia. Somos seu parceiro estratégico para um crescimento inteligente e sustentável.</p>
-                </div>
-                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-                    <!-- Pillar 1 -->
-                    <div class="p-6 fade-in flex items-start gap-4">
-                        <div class="flex-shrink-0 w-12 h-12 bg-slate-800 rounded-lg flex items-center justify-center neon-border-cyan"><svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 text-cyan-400" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" /></svg></div>
-                        <div><h4 class="text-lg font-bold text-white mb-1">Crescimento Previsível</h4><p class="text-slate-400">Transformamos processos manuais em crescimento previsível com I.A. e estratégia.</p></div>
-                    </div>
-                    <!-- Pillar 2 -->
-                    <div class="p-6 fade-in flex items-start gap-4" style="transition-delay: 100ms;">
-                         <div class="flex-shrink-0 w-12 h-12 bg-slate-800 rounded-lg flex items-center justify-center neon-border-cyan"><svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 text-cyan-400" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6" /></svg></div>
-                        <div><h4 class="text-lg font-bold text-white mb-1">ROI Acelerado</h4><p class="text-slate-400">Nossos clientes aumentam em até 3x o ROI em apenas 6 meses.</p></div>
-                    </div>
-                    <!-- Pillar 3 -->
-                    <div class="p-6 fade-in flex items-start gap-4" style="transition-delay: 200ms;">
-                         <div class="flex-shrink-0 w-12 h-12 bg-slate-800 rounded-lg flex items-center justify-center neon-border-cyan"><svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 text-cyan-400" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M15 21v-1a6 6 0 00-1.78-4.125M15 15v6M18 17h-3" /></svg></div>
-                        <div><h4 class="text-lg font-bold text-white mb-1">Parceria Estratégica</h4><p class="text-slate-400">Atuamos como extensão da sua equipe, com acompanhamento ativo por até 6 meses.</p></div>
-                    </div>
-                    <!-- Pillar 4 -->
-                    <div class="p-6 fade-in flex items-start gap-4">
-                         <div class="flex-shrink-0 w-12 h-12 bg-slate-800 rounded-lg flex items-center justify-center neon-border-cyan"><svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 text-cyan-400" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" /><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" /></svg></div>
-                        <div><h4 class="text-lg font-bold text-white mb-1">Integração Simples</h4><p class="text-slate-400">Nosso sistema se conecta com o que você já usa (ERP, CRM, financeiro), sem complicações.</p></div>
-                    </div>
-                    <!-- Pillar 5 -->
-                    <div class="p-6 fade-in flex items-start gap-4" style="transition-delay: 100ms;">
-                         <div class="flex-shrink-0 w-12 h-12 bg-slate-800 rounded-lg flex items-center justify-center neon-border-cyan"><svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 text-cyan-400" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18.364 5.636l-3.536 3.536m0 5.656l3.536 3.536M9.172 9.172L5.636 5.636m3.536 9.192l-3.536 3.536M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg></div>
-                        <div><h4 class="text-lg font-bold text-white mb-1">Suporte 24/7</h4><p class="text-slate-400">Estamos sempre disponíveis para garantir que sua operação nunca pare.</p></div>
-                    </div>
-                    <!-- Pillar 6 -->
-                    <div class="p-6 fade-in flex items-start gap-4" style="transition-delay: 200ms;">
-                         <div class="flex-shrink-0 w-12 h-12 bg-slate-800 rounded-lg flex items-center justify-center neon-border-cyan"><svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 text-cyan-400" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.684 13.342C8.886 12.938 9 12.482 9 12s-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6.002l6.632-3.316m0 0a3 3 0 105.367-2.684 3 3 0 00-5.367 2.684zm0 9.368a3 3 0 105.367 2.684 3 3 0 00-5.367-2.684z" /></svg></div>
-                        <div><h4 class="text-lg font-bold text-white mb-1">Foco no seu Ecossistema</h4><p class="text-slate-400">Integração perfeita com sistemas existentes para uma transição suave e eficiente.</p></div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- 5. Testimonials Section -->
-        <section id="testimonials" class="py-16 lg:py-24 circuit-bg">
-            <div class="container mx-auto px-6">
-                <div class="text-center mb-12 fade-in">
-                    <h2 class="text-4xl lg:text-5xl font-extrabold text-white">Resultados que <span class="neon-text-cyan">falam por si</span></h2>
-                    <p class="mt-4 text-lg text-slate-400 max-w-2xl mx-auto">Veja como transformamos a realidade de empresas como a sua.</p>
-                </div>
-                <div class="grid lg:grid-cols-3 gap-8">
-                    <!-- Testimonial 1 -->
-                    <div class="bg-slate-900 p-8 rounded-2xl neon-border-cyan flex flex-col fade-in">
-                        <div class="flex items-center text-yellow-400 mb-4">
-                            <!-- 5 stars SVG -->
-                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg><svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg><svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg><svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg><svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
-                        </div>
-                        <p class="text-slate-300 italic text-lg mb-6 flex-grow">"Automatizamos tarefas repetitivas e liberamos nossa equipe para focar em estratégia. O resultado foi um aumento de 40% na produtividade."</p>
-                        <div class="flex items-center mt-auto">
-                            <img src="https://placehold.co/48x48/1e293b/0ea5e9?text=MS" alt="Avatar de Maria Santos" class="w-12 h-12 rounded-full mr-4 border-2 border-slate-700">
-                            <div>
-                                <p class="font-bold text-white">Maria Santos</p>
-                                <p class="text-sm text-slate-400">Diretora da TechCorp</p>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- Testimonial 2 -->
-                    <div class="bg-slate-900 p-8 rounded-2xl neon-border-cyan flex flex-col fade-in" style="transition-delay: 150ms;">
-                        <div class="flex items-center text-yellow-400 mb-4">
-                            <!-- 5 stars -->
-                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg><svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg><svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg><svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg><svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
-                        </div>
-                        <p class="text-slate-300 italic text-lg mb-6 flex-grow">"Reduzimos 65% do tempo em processos administrativos em apenas 3 meses."</p>
-                        <div class="flex items-center mt-auto">
-                            <img src="https://placehold.co/48x48/1e293b/0ea5e9?text=JS" alt="Avatar de João Silva" class="w-12 h-12 rounded-full mr-4 border-2 border-slate-700">
-                            <div>
-                                <p class="font-bold text-white">João Silva</p>
-                                <p class="text-sm text-slate-400">CEO da LogiPro</p>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- Testimonial 3 -->
-                    <div class="bg-slate-900 p-8 rounded-2xl neon-border-cyan flex flex-col fade-in" style="transition-delay: 300ms;">
-                        <div class="flex items-center text-yellow-400 mb-4">
-                             <!-- 5 stars -->
-                             <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg><svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg><svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg><svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg><svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
-                        </div>
-                        <p class="text-slate-300 italic text-lg mb-6 flex-grow">"O retorno foi imediato. Em 2 meses já tínhamos economizado mais que o investimento."</p>
-                        <div class="flex items-center mt-auto">
-                            <img src="https://placehold.co/48x48/1e293b/0ea5e9?text=CM" alt="Avatar de Carlos Mendes" class="w-12 h-12 rounded-full mr-4 border-2 border-slate-700">
-                            <div>
-                                <p class="font-bold text-white">Carlos Mendes</p>
-                                <p class="text-sm text-slate-400">Diretor da AutoTech</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- 6. FAQ Section -->
-        <section id="faq" class="py-16 lg:py-24 bg-slate-900">
-            <div class="container mx-auto px-6">
-                 <div class="text-center mb-12 fade-in">
-                    <h2 class="text-4xl lg:text-5xl font-extrabold text-white">Perguntas Frequentes</h2>
-                    <p class="mt-4 text-lg text-slate-400 max-w-2xl mx-auto">Tudo o que você precisa saber para começar a transformar seu negócio.</p>
-                </div>
-                <div class="max-w-3xl mx-auto space-y-4 fade-in">
-                    <!-- Accordion Item -->
-                    <div class="bg-slate-800 rounded-lg neon-border-cyan">
-                        <button class="accordion-header w-full flex justify-between items-center text-left p-6 font-semibold text-white">
-                            <span>Como funciona o diagnóstico inicial?</span>
-                            <svg class="accordion-icon w-5 h-5 transition-transform transform text-cyan-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
-                        </button>
-                        <div class="accordion-content">
-                            <p class="p-6 pt-0 text-slate-400">Realizamos um diagnóstico estratégico em até 3 dias para mapear gargalos, desperdícios e oportunidades de automação no seu negócio.</p>
-                        </div>
-                    </div>
-                    <!-- Repeat for other questions... -->
-                    <div class="bg-slate-800 rounded-lg neon-border-cyan">
-                        <button class="accordion-header w-full flex justify-between items-center text-left p-6 font-semibold text-white"><span>Quanto tempo demora para implementar?</span><svg class="accordion-icon w-5 h-5 transition-transform transform text-cyan-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg></button>
-                        <div class="accordion-content"><p class="p-6 pt-0 text-slate-400">A implementação leva de 15 dias a 3 meses, dependendo da complexidade dos processos. Tudo é acompanhado pela nossa equipe técnica passo a passo.</p></div>
-                    </div>
-                    <div class="bg-slate-800 rounded-lg neon-border-cyan">
-                        <button class="accordion-header w-full flex justify-between items-center text-left p-6 font-semibold text-white"><span>Preciso entender de tecnologia?</span><svg class="accordion-icon w-5 h-5 transition-transform transform text-cyan-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg></button>
-                        <div class="accordion-content"><p class="p-6 pt-0 text-slate-400">Não precisa! Nossa solução é simples, intuitiva e 100% acompanhada. A sua equipe será treinada e apoiada do início ao fim.</p></div>
-                    </div>
-                    <div class="bg-slate-800 rounded-lg neon-border-cyan">
-                        <button class="accordion-header w-full flex justify-between items-center text-left p-6 font-semibold text-white"><span>Em quanto tempo vejo resultados?</span><svg class="accordion-icon w-5 h-5 transition-transform transform text-cyan-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg></button>
-                        <div class="accordion-content"><p class="p-6 pt-0 text-slate-400">Clientes da UPMETRIKA costumam ver aumento de produtividade e redução de retrabalho já nas primeiras semanas após a automação.</p></div>
-                    </div>
-                    <div class="bg-slate-800 rounded-lg neon-border-cyan">
-                        <button class="accordion-header w-full flex justify-between items-center text-left p-6 font-semibold text-white"><span>Como funciona o suporte?</span><svg class="accordion-icon w-5 h-5 transition-transform transform text-cyan-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg></button>
-                        <div class="accordion-content"><p class="p-6 pt-0 text-slate-400">Oferecemos suporte técnico e estratégico por 6 meses após a entrega, com acompanhamento ativo e atendimento 100% em português.</p></div>
-                    </div>
-                    <div class="bg-slate-800 rounded-lg neon-border-cyan">
-                        <button class="accordion-header w-full flex justify-between items-center text-left p-6 font-semibold text-white"><span>Tem garantia ou contrato de fidelidade?</span><svg class="accordion-icon w-5 h-5 transition-transform transform text-cyan-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg></button>
-                        <div class="accordion-content"><p class="p-6 pt-0 text-slate-400">Sem fidelidade. Trabalhamos com contratos de 6 meses e entregamos resultados mensuráveis. Acreditamos que confiança se conquista com performance.</p></div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- 7. Final CTA -->
-        <section id="final-cta" class="py-16 lg:py-24 bg-gradient-animated-dark circuit-bg">
-            <div class="container mx-auto px-6">
-                <div class="bg-slate-900 rounded-2xl shadow-2xl shadow-cyan-900/40 p-8 lg:p-12 overflow-hidden neon-border-cyan">
-                    <div class="grid lg:grid-cols-2 gap-12 items-center">
-                        <div class="fade-in">
-                            <h2 class="text-3xl lg:text-4xl font-extrabold text-white leading-tight mb-4">Descubra o potencial de <span class="neon-text-cyan">automação para seu negócio</span></h2>
-                            <p class="text-lg text-slate-400 mb-8">Em menos de 3 dias você terá um plano claro para automatizar e escalar seu negócio.</p>
-                            <a href="https://wa.me/5546999854762" target="_blank" class="bg-cyan-500 text-slate-900 font-semibold text-center px-8 py-4 rounded-lg hover:bg-cyan-400 transition-all duration-300 shadow-lg shadow-cyan-500/30 hover:shadow-xl hover:shadow-cyan-400/40 transform hover:-translate-y-1 inline-block">Quero o meu diagnóstico!</a>
-                        </div>
-                        <div class="fade-in" style="transition-delay: 200ms;">
-                             <img src="https://placehold.co/500x400/0f172a/06b6d4?text=UPMETRIKA+App+Neon" alt="Mockup de um aplicativo futurista da UPMETRIKA" class="rounded-xl shadow-lg shadow-cyan-900/20 mx-auto w-full">
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-    </main>
-
-    <!-- 8. Footer -->
-    <footer class="bg-slate-950 text-slate-400 border-t border-slate-800">
-        <div class="container mx-auto px-6 py-8">
-            <div class="flex flex-col md:flex-row justify-between items-center">
-                <p>&copy; 2025 UPMETRIKA. Todos os direitos reservados.</p>
-                <div class="flex space-x-6 mt-4 md:mt-0">
-                    <!-- Social Icons -->
-                    <a href="https://www.linkedin.com/in/eli-martins-metrika" target="_blank" class="hover:text-cyan-400 transition-colors">
-                        <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" clip-rule="evenodd"/></svg>
-                    </a>
-                     <a href="https://www.instagram.com/eli_martins_metrika?igsh=b3czc3ZsbDYwc2Zm" target="_blank" class="hover:text-cyan-400 transition-colors">
-                        <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.85s-.012 3.584-.07 4.85c-.148 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07s-3.584-.012-4.85-.07c-3.252-.148-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.85s.012-3.584.07-4.85C2.165 3.856 3.712 2.31 6.963 2.163 8.228 2.105 8.608 2.093 12 2.093m0-2.093c-3.264 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.684-.073 4.948s.014 3.667.072 4.947c.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.684.072 4.948.072s3.667-.014 4.947-.072c4.358-.2 6.78-2.618 6.98-6.98.059-1.281.073-1.684.073-4.948s-.014-3.667-.072-4.947c-.2-4.358-2.618-6.78-6.98-6.98C15.667.014 15.264 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.88 1.44 1.44 0 000-2.88z"/></svg>
-                    </a>
-                    <a href="https://wa.me/5546999854762" target="_blank" class="hover:text-cyan-400 transition-colors">
-                        <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.894 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.886-.001 2.269.655 4.398 1.905 6.182l-.341 1.236 1.251-.328z"/></svg>
-                    </a>
-                </div>
-            </div>
+          </div>
         </div>
-    </footer>
+      </div>
+    </section>
+  </main>
 
-    <script>
-        document.addEventListener('DOMContentLoaded', function () {
-            // --- Mobile Menu Toggle ---
-            const mobileMenuButton = document.getElementById('mobile-menu-button');
-            const mobileMenu = document.getElementById('mobile-menu');
-            mobileMenuButton.addEventListener('click', () => {
-                mobileMenu.classList.toggle('hidden');
-            });
-            
-            // --- Close mobile menu on link click ---
-            const mobileLinks = mobileMenu.querySelectorAll('a');
-            mobileLinks.forEach(link => {
-                link.addEventListener('click', () => {
-                    mobileMenu.classList.add('hidden');
-                });
-            });
-
-            // --- Sticky Navbar Shadow ---
-            const navbar = document.getElementById('navbar');
-            window.addEventListener('scroll', () => {
-                if (window.scrollY > 10) {
-                    navbar.classList.add('shadow-lg', 'shadow-cyan-500/10');
-                } else {
-                    navbar.classList.remove('shadow-lg', 'shadow-cyan-500/10');
-                }
-            });
-
-            // --- FAQ Accordion ---
-            const accordionHeaders = document.querySelectorAll('.accordion-header');
-            accordionHeaders.forEach(header => {
-                header.addEventListener('click', () => {
-                    const content = header.nextElementSibling;
-                    const icon = header.querySelector('.accordion-icon');
-                    
-                    const isOpen = content.style.maxHeight;
-
-                    // Close all accordions
-                    document.querySelectorAll('.accordion-content').forEach(c => {
-                        c.style.maxHeight = null;
-                        c.previousElementSibling.querySelector('.accordion-icon').classList.remove('rotate-180');
-                    });
-                    
-                    if (!isOpen) {
-                        content.style.maxHeight = content.scrollHeight + 'px';
-                        icon.classList.add('rotate-180');
-                    }
-                });
-            });
-
-            // --- Fade-in on Scroll ---
-            const fadeInElements = document.querySelectorAll('.fade-in');
-            const observer = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        entry.target.classList.add('visible');
-                        observer.unobserve(entry.target);
-                    }
-                });
-            }, {
-                threshold: 0.1
-            });
-
-            fadeInElements.forEach(el => {
-                observer.observe(el);
-            });
-
-            // --- Gemini AI Calculator Logic ---
-            const calculateBtn = document.getElementById('calculate-btn');
-            const loader = document.getElementById('loader');
-            const resultsDiv = document.getElementById('results');
-            const errorMessageDiv = document.getElementById('error-message');
-
-            calculateBtn.addEventListener('click', async () => {
-                const businessDescription = document.getElementById('business-description').value;
-
-                if (!businessDescription.trim()) {
-                    showError("Por favor, descreva seu negócio para que a IA possa ajudar.");
-                    return;
-                }
-                
-                showLoader(true);
-                hideResults();
-                hideError();
-
-                const userQuery = `
-                    Baseado na seguinte descrição de um negócio, forneça 5 sugestões criativas e específicas de processos que poderiam ser automatizados usando Inteligência Artificial. 
-                    As sugestões devem ser curtas, diretas e acionáveis, começando com um verbo.
-
-                    Descrição do negócio: "${businessDescription}"
-                `;
-
-                const payload = {
-                    contents: [{ parts: [{ text: userQuery }] }],
-                    generationConfig: {
-                        responseMimeType: "application/json",
-                        responseSchema: {
-                            type: "OBJECT",
-                            properties: {
-                                "sugestoes_automacao": {
-                                    "type": "ARRAY",
-                                    "items": { "type": "STRING" }
-                                }
-                            }
-                        }
-                    }
-                };
-
-                try {
-                    const apiKey = ""; // API key will be provided by the environment
-                    const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-05-20:generateContent?key=${apiKey}`;
-
-                    const response = await fetch(apiUrl, {
-                        method: 'POST',
-                        headers: { 'Content-Type': 'application/json' },
-                        body: JSON.stringify(payload)
-                    });
-
-                    if (!response.ok) {
-                        throw new Error(`API error: ${response.statusText}`);
-                    }
-
-                    const result = await response.json();
-                    
-                    if (result.candidates && result.candidates.length > 0 && result.candidates[0].content?.parts?.[0]?.text) {
-                        const jsonText = result.candidates[0].content.parts[0].text;
-                        const data = JSON.parse(jsonText);
-                        displayResults(data);
-                    } else {
-                         throw new Error("Não foi possível gerar a análise. A resposta da IA está vazia ou mal formatada.");
-                    }
-
-                } catch (error) {
-                    console.error("Error calling Gemini API:", error);
-                    showError("Ocorreu um erro ao consultar a IA. Por favor, tente novamente mais tarde.");
-                } finally {
-                    showLoader(false);
-                }
-            });
-
-            function showLoader(isLoading) {
-                if (isLoading) {
-                    loader.classList.remove('hidden');
-                } else {
-                    loader.classList.add('hidden');
-                }
-            }
-
-            function displayResults(data) {
-                const suggestionsListEl = document.getElementById('suggestions-list');
-                
-                suggestionsListEl.innerHTML = '';
-                data.sugestoes_automacao.forEach(suggestion => {
-                    const li = document.createElement('li');
-                    li.textContent = suggestion;
-                    suggestionsListEl.appendChild(li);
-                });
-
-                resultsDiv.classList.remove('hidden');
-            }
-            
-            function hideResults() {
-                resultsDiv.classList.add('hidden');
-            }
-
-            function showError(message) {
-                errorMessageDiv.textContent = message;
-                errorMessageDiv.classList.remove('hidden');
-            }
-            
-            function hideError() {
-                errorMessageDiv.classList.add('hidden');
-            }
-
-        });
-    </script>
+  <footer class="bg-slate-100 py-6 text-center text-slate-500">
+    <p>&copy; 2024 UPMETRIKA. Todos os direitos reservados.</p>
+  </footer>
 </body>
 </html>
